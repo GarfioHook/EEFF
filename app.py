@@ -53,7 +53,7 @@ EERR_ROWS = [
     ('TOTAL GASTOS OPERACIONALES', '__gto__', 1, 'subtotal', C_GASTO),
     ('RESULTADO OPERACIONAL', '__rop__', 1, 'result', C_HDR_BLU),
     ('── RESULT. NO OPERACIONAL ──', None, 1, 'section', C_VIOLET),
-    ('Ingresos/Egresos No Operac.', ['071'], -1, 'line', None),
+    ('Ingresos/Egresos No Operac.', ['071', '072'], -1, 'line', None),
     ('Diferencias de Cambio', ['081'], -1, 'line', None),
     ('TOTAL RESULT. NO OPERACIONAL', '__nop__', 1, 'subtotal', C_VIOLET),
     ('── IMPUESTOS ──', None, 1, 'section', "404040"),
@@ -100,7 +100,7 @@ def comp_div(df, div, col):
     acc['ing']   = sum_pfx(df, div, ['0410101','0410105'], col) * -1
     acc['costo'] = sum_pfx(df, div, ['0510101','0510203'], col)
     acc['gto']   = sum_pfx(df, div, ['0610101','0610201','0610301','0610401','0610501','0610801','0611001','0611101','0611201','0611301','0611601','0611701','0620101'], col)
-    acc['nop']   = sum_pfx(df, div, ['071','081'], col) * -1
+    acc['nop']   = sum_pfx(df, div, ['071', '072', '081'], col) * -1
     acc['imp']   = sum_pfx(df, div, ['091'], col) * -1
     acc['margen']= acc['ing'] - acc['costo']
     acc['rop']   = acc['margen'] - acc['gto']
